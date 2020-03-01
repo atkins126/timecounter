@@ -6,6 +6,7 @@ object TimeCounter: TTimeCounter
   ClientHeight = 292
   ClientWidth = 457
   Color = clWhite
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -327,8 +328,6 @@ object TimeCounter: TTimeCounter
     ShowCaption = False
     TabOrder = 0
     OnMouseDown = Panel8MouseDown
-    ExplicitLeft = -55
-    ExplicitWidth = 489
     object Label3: TLabel
       Left = 6
       Top = 6
@@ -363,7 +362,6 @@ object TimeCounter: TTimeCounter
       ShowCaption = False
       TabOrder = 0
       OnClick = Panel9Click
-      ExplicitLeft = 460
       object Image9: TImage
         Left = 0
         Top = 0
@@ -407,7 +405,6 @@ object TimeCounter: TTimeCounter
       ShowCaption = False
       TabOrder = 1
       OnClick = Panel10Click
-      ExplicitLeft = 443
       object Image10: TImage
         Left = 0
         Top = 0
@@ -435,8 +432,8 @@ object TimeCounter: TTimeCounter
     Top = 98
     Width = 186
     Height = 22
-    Date = 43764.000000000000000000
-    Time = 0.766632638886221700
+    Date = 43891.000000000000000000
+    Time = 0.625000000000000000
     DateFormat = dfLong
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -479,7 +476,9 @@ object TimeCounter: TTimeCounter
       ParentFont = False
       Layout = tlCenter
       OnClick = Label12Click
-      ExplicitLeft = 8
+      ExplicitLeft = 20
+      ExplicitWidth = 76
+      ExplicitHeight = 14
     end
   end
   object DateTimePicker2: TDateTimePicker
@@ -488,7 +487,7 @@ object TimeCounter: TTimeCounter
     Width = 126
     Height = 22
     Date = 43764.000000000000000000
-    Time = 0.766632638886221700
+    Time = 0.625000000000000000
     DateFormat = dfLong
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -501,7 +500,7 @@ object TimeCounter: TTimeCounter
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 500
+    Interval = 50
     OnTimer = Timer1Timer
     Left = 32
     Top = 226

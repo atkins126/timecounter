@@ -75,14 +75,14 @@ begin
   Label7.Caption:='About DMIT Computers Time Counter';
   Label1.Caption:='This program is based on a '+#39+'Year Progress'+#39+' project, created by Fillip Hracek in 2015, and has been successfully ported to the Pascal and JavaScript programming languages.';
   Label3.Caption:='DMIT Computers Time Counter for Windows';
-  Label4.Caption:='Program Version 1.5.0 (November 2019)';
+  Label4.Caption:='Program Version 1.5.1 (March 2020)';
   Label2.Caption:='Go to the site of the original project';
 end else
 begin
   Label7.Caption:='О программе DMIT Computers Time Counter';
   Label1.Caption:='Эта программа создана на основе проекта Year Progress, созданного Filip Hracek в 2015 году, и успешно портирована на языках программирования Pascal и JavaScript.';
   Label3.Caption:='Счетчик времени DMIT Computers';
-  Label4.Caption:='Версия программы 1.5.0 (ноябрь 2019)';
+  Label4.Caption:='Версия программы 1.5.1 (март 2020)';
   Label2.Caption:='Перейти на сайт оригинального проекта';
 end;
    if CheckWin32Version(10, 0) then
@@ -125,14 +125,14 @@ begin
   Label7.Caption:='About DMIT Computers Time Counter';
   Label1.Caption:='This program is based on a '+#39+'Year Progress'+#39+' project, created by Fillip Hracek in 2015, and has been successfully ported to the Pascal and JavaScript programming languages.';
   Label3.Caption:='DMIT Computers Time Counter for Windows';
-  Label4.Caption:='Program Version 1.5.0 (November 2019)';
+  Label4.Caption:='Program Version 1.5.1 (March 2020)';
   Label2.Caption:='Go to the site of the original project';
 end else
 begin
   Label7.Caption:='О программе DMIT Computers Time Counter';
   Label1.Caption:='Эта программа создана на основе проекта Year Progress, созданного Filip Hracek в 2015 году, и успешно портирована на языках программирования Pascal и JavaScript.';
   Label3.Caption:='Счетчик времени DMIT Computers';
-  Label4.Caption:='Версия программы 1.5.0 (ноябрь 2019)';
+  Label4.Caption:='Версия программы 1.5.1 (март 2020)';
   Label2.Caption:='Перейти на сайт оригинального проекта';
 end;
 
@@ -145,7 +145,7 @@ end;
 
 procedure TAboutProgram1.Image5Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', PChar('http://discord.gg/FfZ7ZzT'), nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', PChar('http://discord.gg/MeKST83'), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TAboutProgram1.Label2Click(Sender: TObject);
@@ -184,14 +184,14 @@ begin
   Label7.Caption:='About DMIT Computers Time Counter';
   Label1.Caption:='This program is based on a '+#39+'Year Progress'+#39+' project, created by Fillip Hracek in 2015, and has been successfully ported to the Pascal and JavaScript programming languages.';
   Label3.Caption:='DMIT Computers Time Counter for Windows';
-  Label4.Caption:='Program Version 1.5.0 (November 2019)';
+  Label4.Caption:='Program Version 1.5.1 (March 2020)';
   Label2.Caption:='Go to the site of the original project';
 end else
 begin
   Label7.Caption:='О программе DMIT Computers Time Counter';
   Label1.Caption:='Эта программа создана на основе проекта Year Progress, созданного Filip Hracek в 2015 году, и успешно портирована на языках программирования Pascal и JavaScript.';
   Label3.Caption:='Счетчик времени DMIT Computers';
-  Label4.Caption:='Версия программы 1.5.0 (ноябрь 2019)';
+  Label4.Caption:='Версия программы 1.5.1 (март 2020)';
   Label2.Caption:='Перейти на сайт оригинального проекта';
 end;
 
