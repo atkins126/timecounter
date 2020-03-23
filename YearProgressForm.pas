@@ -79,6 +79,15 @@ type
     Panel12: TPanel;
     NotifyText: TLabel;
     UpDown2: TUpDown;
+    Image12: TImage;
+    Panel13: TPanel;
+    Image13: TImage;
+    Panel14: TPanel;
+    Image14: TImage;
+    Image15: TImage;
+    Panel15: TPanel;
+    Image16: TImage;
+    Image17: TImage;
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
@@ -202,16 +211,19 @@ StyleResource:=('styles\material.vsf');
 AddFontResource('fonts\Roboto-Regular.ttf');
 AddFontResource('fonts\Roboto-Bold.ttf');
 AddFontResource('fonts\Roboto-Thin.ttf');
+AddFontResource('fonts\GothamPro.ttf');
+AddFontResource('fonts\GothamPro-Bold.ttf');
+AddFontResource('fonts\GothamProNarrow-Bold.ttf');
 except
 
 end;
-Label4.Font.Name:='Roboto';
+Label4.Font.Name:='Gotham Pro';
 TodayDateLabel.Font.Name:='Roboto';
 Calendar1.Font.Name:='Roboto';
-Label1.Font.Name:='Roboto';
-Label2.Font.Name:='Roboto';
-DaysCountLabel.Font.Name:='Roboto';
-Label3.Font.Name:='Roboto';
+Label1.Font.Name:='Gotham Pro';
+Label2.Font.Name:='Gotham Pro';
+DaysCountLabel.Font.Name:='Gotham Pro Light';
+Label3.Font.Name:='Gotham Pro';
 OnePercentLabel.Font.Name:='Roboto';
 HundredPercentLabel.Font.Name:='Roboto';
 YearNameLabel.Font.Name:='Roboto';
@@ -219,7 +231,7 @@ MonthNameLabel.Font.Name:='Roboto';
 WeekNameLabel.Font.Name:='Roboto';
 CloseButton2.Font.Name:='Roboto';
 Panel2.Font.Name:='Roboto';
-Panel5.Font.Name:='Roboto';
+Panel5.Font.Name:='Gotham Pro';
 DaysCountLabel2.Font.Name:='Roboto';
 DayTimeNameLabel.Font.Name:='Roboto';
 DayTimePercentsLabel.Font.Name:='Roboto';
@@ -368,7 +380,7 @@ end;
 currdate:=month + IntToStr(DayOf(Date)) + ', ' + IntToStr(YearOf(Now));
 TodayDateLabel.Caption:='  TODAY IS' + currdate;
 CloseButton2.Caption:='Close';
-Panel5.Caption:='CLOSE     ';
+Panel5.Caption:='Close     ';
 DayNameLabel.Caption:='Day (overall progress)';
 MonthNameLabel.Caption:='Month';
 WeekNameLabel.Caption:='Week';
@@ -942,17 +954,12 @@ end;
 currdate:=month + IntToStr(DayOf(Date)) + ', ' + IntToStr(YearOf(Now));
 TodayDateLabel.Caption:='  TODAY IS' + currdate;
 CloseButton2.Caption:='Close';
-Panel5.Caption:='CLOSE     ';
+Panel5.Caption:='Close     ';
 DayNameLabel.Caption:='Day (overall progress)';
 MonthNameLabel.Caption:='Month';
 WeekNameLabel.Caption:='Week';
 YearNameLabel.Caption:='Year';
-TimeCounter.Label7.Caption:='days';
-TimeCounter.Label8.Caption:='hours';
-TimeCounter.Label9.Caption:='min.';
-TimeCounter.Label10.Caption:='sec.';
-TimeCounter.Label13.Caption:='millisec.';
-TimeCounter.Label12.Caption:='CALCULATE';
+TimeCounter.Label12.Caption:='Calculate';
 Image8.Hint:='Date comparison';
 TimeCounter.Label3.Caption:='Date comparison';
 TimeCounter.Label1.Caption:='... has passed since the beginning of the specified date?';
@@ -985,18 +992,13 @@ YearNameLabel.Caption:='Год';
 Image3.Hint:='Показать статистику';
 Image4.Hint:='О программе...';
 Image5.Hint:='Настройки';
-TimeCounter.Label7.Caption:='дней';
-TimeCounter.Label8.Caption:='часов';
-TimeCounter.Label9.Caption:='минут';
-TimeCounter.Label10.Caption:='секунд';
-TimeCounter.Label13.Caption:='миллисек.';
 Image8.Hint:='Сравнение дат';
 TimeCounter.Label3.Caption:='Сравнение дат';
 TimeCounter.Label1.Caption:='... прошло с начала указанной даты?';
 TimeCounter.Label4.Caption:='... осталось до указанной даты?';
 TimeCounter.Label2.Caption:='Сколько дней ...';
 TimeCounter.Label5.Caption:='Результат';
-TimeCounter.Label12.Caption:='ВЫЧИСЛИТЬ';
+TimeCounter.Label12.Caption:='Вычислить';
 if YearProgressForm1.WindowState=wsMinimized then YearProgressForm1.Caption:='Y: ' + FloatToStr(CurrPercent2) + '%' else YearProgressForm1.Caption:='Счетчик времени DMIT Computers';
 if (Ini.ReadString('Additionally','UnitTime','')='Percents') then
 begin
@@ -1087,7 +1089,7 @@ DaysCountLabel2.Caption:=FloatToStr(CurrPercent2) + '% / ' + FloatToStr(DayOfThe
 DayPercentsLabel.Caption:=FloatToStr(CurrDPercent2) + '% / ' + FloatToStr(HourOf(Now)) + ':' + minutes;
 MonthPercentsLabel.Caption:=FloatToStr(CurrMPercent2) + '% / ' + FloatToStr(DayOfTheMonth(Now)) + ' дн.';
 CloseButton2.Caption:='Закрыть';
-Panel5.Caption:='ЗАКРЫТЬ    ';
+Panel5.Caption:='Закрыть    ';
 end;
 WeekPercentsLabel.Caption:=FloatToStr(CurrWPercent2) + '% / ' + LDayOfWeekName;
 MonthProgressBar.Position:=StrToInt(FloatToStr(CurrMPercent));
@@ -1138,7 +1140,7 @@ begin
  begin
  YearProgressForm1.Enabled:=False;
  startheight:=Panel1.Height;
- Panel1.Height:=Panel1.Height + 6;
+ Panel1.Height:=Panel1.Height + 4;
  end else
  begin
  Timer2.Enabled:=False;
@@ -1151,7 +1153,7 @@ begin
   if Panel1.Height > 0 then
  begin
  YearProgressForm1.Enabled:=False;
- Panel1.Height:=Panel1.Height - 8;
+ Panel1.Height:=Panel1.Height - 6;
  end else begin
  Timer3.Enabled:=False;
  YearProgressForm1.Enabled:=True;

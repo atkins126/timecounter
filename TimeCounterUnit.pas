@@ -30,13 +30,10 @@ type
     Panel1: TPanel;
     Label12: TLabel;
     Timer1: TTimer;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label13: TLabel;
     DateTimePicker2: TDateTimePicker;
     Image1: TImage;
+    Label7: TLabel;
+    Image12: TImage;
     procedure Label12Click(Sender: TObject);
     procedure UncheckedRadioButton1Click(Sender: TObject);
     procedure CheckedRadioButton1Click(Sender: TObject);
@@ -160,7 +157,8 @@ begin
   if MilliSecond < 10 then MilliSecond2 := '00' + IntToStr(MilliSecond);
   if (MilliSecond >= 10) and (MilliSecond < 100) then MilliSecond2 := '0' + IntToStr(MilliSecond);
   if MilliSecond >= 100 then MilliSecond2 := IntToStr(MilliSecond);
-  Label6.Caption:=IntToStr(DaysBetween(date1, date2)) + ':' + Hour2 + ':' + Minute2 + ':' + Second2 + ' ' + Millisecond2;
+  Label6.Caption:=IntToStr(DaysBetween(date1, date2)) + ':' + Hour2 + ':' + Minute2 + ':' + Second2;
+  Label7.Caption:=MilliSecond2;
   Timer1.Enabled:=True;
       if CheckedRadioButton2.Visible=True then
   begin
@@ -238,7 +236,8 @@ begin
   if MilliSecond < 10 then MilliSecond2 := '00' + IntToStr(MilliSecond);
   if (MilliSecond >= 10) and (MilliSecond < 100) then MilliSecond2 := '0' + IntToStr(MilliSecond);
   if MilliSecond >= 100 then MilliSecond2 := IntToStr(MilliSecond);
-  Label6.Caption:=IntToStr(DaysBetween(date1, date2)) + ':' + Hour2 + ':' + Minute2 + ':' + Second2 + '  ' + Millisecond2;
+  Label6.Caption:=IntToStr(DaysBetween(date1, date2)) + ':' + Hour2 + ':' + Minute2 + ':' + Second2;
+  Label7.Caption:=MilliSecond2;
   Label11.Caption:=DateTimeToStr(date2) + ' - ' + DateTimeToStr(date1);
 
 end;

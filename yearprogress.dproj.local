@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.162,=C:\Users\Дмитрий\Documents\YearProgress\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.032,=C:\Users\Дмитрий\Documents\YearProgress\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.420,C:\Users\Дмитрий\Documents\YearProgress\Unit1.pas=C:\Users\Дмитрий\Documents\YearProgress\TimeCounterUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.420,C:\Users\Дмитрий\Documents\YearProgress\Unit1.dfm=C:\Users\Дмитрий\Documents\YearProgress\TimeCounterUnit.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.419,C:\Users\Дмитрий\Documents\Embarcadero\Studio\Projects\Project2.dproj=C:\Users\Дмитрий\Documents\YearProgress\yearprogress.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.091,=C:\Users\Дмитрий\Documents\YearProgress\YearProgressForm.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.802,=C:\Users\Дмитрий\Documents\YearProgress\Win32\Debug\styles\material.vsf</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.933,=C:\Users\Дмитрий\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.088,=C:\Users\Дмитрий\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.549,=C:\Users\Дмитрий\Documents\YearProgress\AboutProgram.pas</Transaction>
+  <Transactions>
+    <Transaction>2020.03.23 12:25:34.477,C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\yearprogress.dproj=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\yearprogress.dproj</Transaction>
+    <Transaction>2020.03.23 12:27:37.672,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\YearProgressForm.pas=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\YearProgressForm.pas</Transaction>
+    <Transaction>2020.03.23 12:27:37.672,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\YearProgressForm.dfm=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\YearProgressForm.dfm</Transaction>
+    <Transaction>2020.03.23 12:27:54.268,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\AboutProgram.pas=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\AboutProgram.pas</Transaction>
+    <Transaction>2020.03.23 12:27:54.268,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\AboutProgram.dfm=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\AboutProgram.dfm</Transaction>
+    <Transaction>2020.03.23 12:28:09.724,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\TimeCounterUnit.dfm=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\TimeCounterUnit.dfm</Transaction>
+    <Transaction>2020.03.23 12:28:09.724,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\TimeCounterUnit.pas=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\TimeCounterUnit.pas</Transaction>
+    <Transaction>2020.03.23 12:28:28.242,C:\Users\Дмитрий\Documents\Исходные коды\Time Counter\yearprogress.dproj=C:\Users\Дмитрий\Downloads\timecounter-master\timecounter-master\yearprogress.dproj</Transaction>
   </Transactions>
 </BorlandProject>
