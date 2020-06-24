@@ -18,21 +18,26 @@ Class MainWindow
         If dmitpctckey.GetValue("DarkTheme") <> "Enabled" And dmitpctckey.GetValue("DarkTheme") <> "Disabled" Then
             dmitpctckey.SetValue("DarkTheme", "Disabled")
         End If
+        If dmitpctckey.GetValue("RefreshRate") = Nothing Then
+            dmitpctckey.SetValue("RefreshRate", "5")
+        End If
+        janlabel.Content = "01." + Convert.ToString(Year(Now))
+        declabel.Content = "12." + Convert.ToString(Year(Now))
     End Sub
 
     Private Sub Timer1Start()
-        timer1.Interval = New TimeSpan(0, 0, 0, 0, 50)
+        timer1.Interval = TimeSpan.FromMilliseconds(10000)
         AddHandler timer1.Tick, AddressOf Me.Timer1Tick
         timer1.Start()
     End Sub
 
     Private Sub Timer1Tick(sender As Object, e As EventArgs)
         Try
-            startupscreen.Visibility = Visibility.Hidden
             Dim currentUserKey As RegistryKey = Registry.CurrentUser
             Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
             Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
             Dim darkthsetgs As String = dmitpctckey.GetValue("DarkTheme").ToString()
+            Dim rratesetgs As String = dmitpctckey.GetValue("RefreshRate").ToString()
             Dim todaydate As Date = Today
             Dim todaytime As DateTime = Today
             Dim EngMonthName As String
@@ -221,7 +226,10 @@ Class MainWindow
             Dim weekDayPerc = Math.Round(Weekday(Now) + ((Hour(Now) + (Minute(Now) / 60)) / 24), 2) / 0.07
             dayslabel.Content = Convert.ToString(daysInt)
             daygprglabel.Content = Convert.ToString(Math.Round(DayG, 2)) + "% / " + Convert.ToString(Hour(Now)) + ":" + MinuteWZ
+            rrateslider.Value = Convert.ToInt32(rratesetgs)
             If languagesetgs = "ru" Then
+                janlabel.Content = "01." + Convert.ToString(Year(Now))
+                declabel.Content = "12." + Convert.ToString(Year(Now))
                 todaylabel.Content = "СЕГОДНЯ " + Convert.ToString(Day(Now)) + RusMonthName + Convert.ToString(Year(Now))
                 weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + RusWeekDaySName
                 daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " дн."
@@ -236,13 +244,18 @@ Class MainWindow
                 WeekTitle.Content = "Неделя"
                 DayGTitle.Content = "День (общий прогресс)"
                 closeFrameBtn.Content = "ЗАКРЫТЬ"
+                refreshrate_note_label.Content = "Настройки сохраняются не сразу."
                 aboutprgfrm.aboutdlgtitle.Content = "О программе " + Chr(2) + "Счетчик времени DMITComp" + Chr(2)
                 aboutprgfrm.programname.Content = "Счетчик времени DMIT Computers"
                 aboutprgfrm.programversion.Content = "Версия " + Version
                 aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. Все права защищены."
                 uilng_label.Content = "Язык интерфейса (UI Language)"
+                rrate_label.Content = "Частота обновления (в секундах)"
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " с."
             End If
             If languagesetgs = "en" Then
+                janlabel.Content = "01." + Convert.ToString(Year(Now))
+                declabel.Content = "12." + Convert.ToString(Year(Now))
                 todaylabel.Content = "TODAY IS " + EngMonthName + Convert.ToString(Day(Now)) + ", " + Convert.ToString(Year(Now))
                 weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + EngWeekDaySName
                 daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " days"
@@ -257,20 +270,26 @@ Class MainWindow
                 WeekTitle.Content = "Week"
                 DayGTitle.Content = "Day (overall progress)"
                 closeFrameBtn.Content = "CLOSE"
+                refreshrate_note_label.Content = "Settings are not saved immediately."
                 aboutprgfrm.aboutdlgtitle.Content = "About DMITComp Time Counter"
                 aboutprgfrm.programname.Content = "DMIT Computers Time Counter"
                 aboutprgfrm.programversion.Content = "Version " + Version
                 aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. All rights reserved."
                 uilng_label.Content = "Interface Language"
+                rrate_label.Content = "Refresh Rate (in seconds)"
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
             End If
             If languagesetgs = "ua" Then
+                janlabel.Content = "01." + Convert.ToString(Year(Now))
+                declabel.Content = "12." + Convert.ToString(Year(Now))
                 todaylabel.Content = "СЬОГОДНI " + Convert.ToString(Day(Now)) + UkrMonthName + Convert.ToString(Year(Now))
                 weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + UkrWeekDaySName
                 daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " дн."
                 monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " дн."
-                SettingsDlgTitle.Content = "Настройки"
+                SettingsDlgTitle.Content = "Налаштування"
                 SaveBtn01.Content = "ЗБЕРЕГТИ"
                 DarkThemeCb.Content = "Темна тема (експеримент)"
+                refreshrate_note_label.Content = "Налаштування зберiгаються не вiдразу."
                 title.Content = "Лiчильник часу DMITComp"
                 StatsDlgTitle.Content = "Статистика"
                 yeartitle.Content = "Рiк"
@@ -283,6 +302,8 @@ Class MainWindow
                 aboutprgfrm.programversion.Content = "Версiя " + Version
                 aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. Всi права захищенi."
                 uilng_label.Content = "Мова iнтерфейсу (UI Language)"
+                rrate_label.Content = "Частота оновлення (в секундах)"
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " с."
             End If
             If darkthsetgs = "Enabled" Then
                 Dim LGB As New LinearGradientBrush
@@ -321,6 +342,9 @@ Class MainWindow
                 DarkThemeCb.Foreground = Brushes.White
                 DarkThemeCb.BorderBrush = TransparentGray
                 uilng_label.Foreground = Brushes.White
+                rrate_label.Foreground = Brushes.White
+                rratevaluelabel.Foreground = Brushes.White
+                refreshrate_note_label.Foreground = TransparentGray
             End If
             If darkthsetgs = "Disabled" Then
                 Dim LGB As New LinearGradientBrush
@@ -358,16 +382,23 @@ Class MainWindow
                 DarkThemeCb.Foreground = Brushes.Black
                 DarkThemeCb.BorderBrush = DarkGray
                 uilng_label.Foreground = Brushes.Black
+                rrate_label.Foreground = Brushes.Black
+                rratevaluelabel.Foreground = Brushes.Black
+                refreshrate_note_label.Foreground = DarkGray
             End If
             janlabel.Content = "01." + Convert.ToString(Year(Now))
             declabel.Content = "12." + Convert.ToString(Year(Now))
+            timer1.Interval = TimeSpan.FromSeconds(Convert.ToInt32(Math.Round(rrateslider.Value)))
+            startupscreen.Visibility = Visibility.Hidden
         Catch ex As Exception
             Dim currentUserKey As RegistryKey = Registry.CurrentUser
             Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
             dmitpctckey.SetValue("Language", "ru")
             dmitpctckey.SetValue("DarkTheme", "Disabled")
+            dmitpctckey.SetValue("RefreshRate", "5")
+            janlabel.Content = "01." + Convert.ToString(Year(Now))
+            declabel.Content = "12." + Convert.ToString(Year(Now))
         End Try
-
     End Sub
 
     Private Sub ListBoxItem2_Selected(sender As Object, e As RoutedEventArgs) Handles about_item.Selected
@@ -512,5 +543,43 @@ Class MainWindow
 
     Private Sub QuitItem_Selected(sender As Object, e As RoutedEventArgs)
         Environment.Exit(0)
+    End Sub
+
+    Private Sub rrateslider_ValueChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Double)) Handles rrateslider.ValueChanged
+
+    End Sub
+
+    Private Sub rrateslider_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles rrateslider.MouseDown
+        Dim currentUserKey As RegistryKey = Registry.CurrentUser
+        Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
+        Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
+        If languagesetgs = "ru" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
+        End If
+        If languagesetgs = "en" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+        End If
+        If languagesetgs = "ua" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
+        End If
+        dmitpctckey.SetValue("RefreshRate", Convert.ToString(Math.Round(rrateslider.Value)))
+        timer1.Interval = TimeSpan.FromSeconds(Math.Round(rrateslider.Value))
+    End Sub
+
+    Private Sub rrateslider_MouseMove(sender As Object, e As MouseEventArgs) Handles rrateslider.MouseMove
+        Dim currentUserKey As RegistryKey = Registry.CurrentUser
+        Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
+        Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
+        If languagesetgs = "ru" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
+        End If
+        If languagesetgs = "en" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+        End If
+        If languagesetgs = "ua" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
+        End If
+        dmitpctckey.SetValue("RefreshRate", Convert.ToString(Math.Round(rrateslider.Value)))
+        timer1.Interval = TimeSpan.FromSeconds(Math.Round(rrateslider.Value))
     End Sub
 End Class

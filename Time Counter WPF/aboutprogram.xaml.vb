@@ -15,13 +15,7 @@ Public Class aboutprogram
     End Sub
 
     Private Sub Label_MouseMove(sender As Object, e As MouseEventArgs)
-        If e.RightButton Then
-            Dim point As Point = Mouse.GetPosition(aboutprgfrm)
-            aboutprgfrm.Left = point.X
-            aboutprgfrm.Top = point.Y
-        Else
-            dragging = False
-        End If
+
 
     End Sub
 
@@ -67,13 +61,10 @@ Public Class aboutprogram
     End Sub
 
     Private Sub Timer1Tick(sender As Object, e As EventArgs)
-    End Sub
-
-    Private Sub description_TextChanged(sender As Object, e As TextChangedEventArgs) Handles description.TextChanged
         Dim currentUserKey As RegistryKey = Registry.CurrentUser
         Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
         Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
-        Dim Version As String = "2.0.0 RC1 (June 23, 2020)"
+        Dim Version As String = "2.0.0 RC1.5 (June 24, 2020)"
         If languagesetgs = "ru" Then
             aboutdlgtitle.Content = "О программе " + Chr(2) + "Счетчик времени DMITComp" + Chr(2)
             programname.Content = "Счетчик времени DMIT Computers"
@@ -96,28 +87,10 @@ Public Class aboutprogram
             description.Text = "Проект Time Counter (Лічильник часу) створений на основі проекту Year Progress, що розробляється Філіпом Грасеком в 2015-му.  Програма " + Chr(2) + "Лічильник часу" + Chr(2) + " є прогрессбар, який починається з початку поточного року (01.01) і закінчується кінцем поточного року (31.12), і число минулих днів/відсотків з початку поточного року. " + Chr(2) + "Лічильник часу" + Chr(2) + "портовано на декількох мовах програмування, включаючи Java, JavaScript, Delphi (Pascal) та Visual Basic."
         End If
         Dim darkthsetgs As String = dmitpctckey.GetValue("DarkTheme").ToString()
-        If darkthsetgs = "Enabled" Then
-            Dim LightGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 200, 200, 200))
-            Dim DarkGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 40, 40, 40))
-            Dim DarkGray2 As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 75, 75, 75))
-            Dim TransparentGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(160, 255, 255, 255))
-            aboutdlg.Background = DarkGray
-            aboutdlg.Foreground = Brushes.White
-            aboutdlgtitle.Foreground = Brushes.White
-            description.Foreground = Brushes.White
-            copyrightlabel.Foreground = TransparentGray
-        End If
-        If darkthsetgs = "Disabled" Then
-            Dim LightGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 200, 200, 200))
-            Dim DarkGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 40, 40, 40))
-            Dim DarkGray2 As SolidColorBrush = New SolidColorBrush(Color.FromArgb(255, 75, 75, 75))
-            Dim TransparentGray As SolidColorBrush = New SolidColorBrush(Color.FromArgb(160, 0, 0, 0))
-            aboutdlg.Background = Brushes.White
-            aboutdlg.Foreground = Brushes.Black
-            aboutdlgtitle.Foreground = Brushes.Black
-            description.Foreground = Brushes.Black
-            copyrightlabel.Foreground = TransparentGray
-        End If
+
+    End Sub
+
+    Private Sub description_TextChanged(sender As Object, e As TextChangedEventArgs) Handles description.TextChanged
     End Sub
 
     Private Sub aboutdlgtitle_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles aboutdlgtitle.MouseLeftButtonDown

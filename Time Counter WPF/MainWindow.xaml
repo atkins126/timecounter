@@ -12,7 +12,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}" Grid.IsSharedSizeScope="True" MaxWidth="660" MaxHeight="354" ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+        FontFamily="{DynamicResource MaterialDesignFont}" Grid.IsSharedSizeScope="True" MaxWidth="660" MaxHeight="354" ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Icon="time_counter_icon.ico">
     <Grid Margin="0,0,0,-90" Height="411" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -56,8 +56,8 @@
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
-                <Label x:Name="janlabel" Content="[undf]" HorizontalAlignment="Left" Height="25" Margin="35,162,0,0" VerticalAlignment="Top" Width="66" Padding="0,4,4,4" FontFamily="Roboto" Foreground="Black"/>
-                <Label x:Name="declabel" Content="[undf]" Height="25" Margin="0,162,35,0" VerticalAlignment="Top" Padding="0,4,4,4" FlowDirection="RightToLeft" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="Black"/>
+                <Label x:Name="janlabel" Content="" HorizontalAlignment="Left" Height="25" Margin="35,162,0,0" VerticalAlignment="Top" Width="66" Padding="0,4,4,4" FontFamily="Roboto" Foreground="Black"/>
+                <Label x:Name="declabel" Content="" Height="25" Margin="0,162,35,0" VerticalAlignment="Top" Padding="0,4,4,4" FlowDirection="RightToLeft" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="Black"/>
                 <Label x:Name="dayslabel" Content="0" Height="71" Margin="0,45,256,0" VerticalAlignment="Top" FontSize="64" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="191" FontFamily="Roboto">
                     <Label.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -114,7 +114,7 @@
                 </Canvas>
             </Viewbox>
         </Button>
-        <Label x:Name="todaylabel" Content="СЕГОДНЯ [НЕОПОЗНАННЫЙ]" HorizontalAlignment="Left" Height="22" Margin="28,46,0,0" VerticalAlignment="Top" Width="455" Padding="0,4" FontFamily="Roboto">
+        <Label x:Name="todaylabel" Content="ОБНОВЛЕНИЕ..." HorizontalAlignment="Left" Height="22" Margin="28,46,0,0" VerticalAlignment="Top" Width="455" Padding="0,4" FontFamily="Roboto">
             <Label.Foreground>
                 <SolidColorBrush Color="#DD000000" Opacity="0.75"/>
             </Label.Foreground>
@@ -415,13 +415,13 @@
                 </Button>
             </Grid>
         </materialDesign:Card>
-        <materialDesign:Card x:Name="SettingsDialog" HorizontalAlignment="Left" Height="229" Margin="144,37,0,0" VerticalAlignment="Top" Width="339" Foreground="Black" FontFamily="Roboto" Visibility="Hidden">
-            <Grid x:Name="settingsgrid" HorizontalAlignment="Left" Height="209" Margin="10,10,0,0" VerticalAlignment="Top" Width="319">
+        <materialDesign:Card x:Name="SettingsDialog" Height="229" Margin="110,37,110,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Roboto" Visibility="Hidden">
+            <Grid x:Name="settingsgrid" HorizontalAlignment="Left" Height="209" Margin="10,10,0,0" VerticalAlignment="Top" Width="392">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="SettingsDlgTitle" Content="Настройки" Height="27" Foreground="Black" FontSize="18" VerticalAlignment="Top" FontWeight="Bold" Padding="4,2" HorizontalAlignment="Left" Width="319"/>
-                <CheckBox x:Name="DarkThemeCb" Content="Темная тема (эксперимент)" HorizontalAlignment="Left" Height="28" Margin="2,27,0,0" VerticalAlignment="Top" Width="317" Padding="4,2,0,0" FontSize="12">
+                <CheckBox x:Name="DarkThemeCb" Content="Темная тема (экспериментально)" HorizontalAlignment="Left" Height="28" Margin="2,27,0,0" VerticalAlignment="Top" Width="390" Padding="4,2,0,0" FontSize="12">
                     <CheckBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <LinearGradientBrush.RelativeTransform>
@@ -451,15 +451,15 @@
                         </LinearGradientBrush>
                     </CheckBox.Background>
                 </CheckBox>
-                <Label x:Name="uilng_label" Content="Язык интерфейса (UI Language)" HorizontalAlignment="Left" Height="22" Margin="0,55,0,0" VerticalAlignment="Top" Width="188" Foreground="Black" FontSize="12"/>
-                <ComboBox x:Name="lngcombob" HorizontalAlignment="Left" Height="17" Margin="193,57,0,0" VerticalAlignment="Top" Width="126" Text="Русский" Padding="0" Background="{x:Null}">
+                <Label x:Name="uilng_label" Content="Язык интерфейса (UI Language)" HorizontalAlignment="Left" Height="22" Margin="0,55,0,0" VerticalAlignment="Top" Width="261" Foreground="Black" FontSize="12"/>
+                <ComboBox x:Name="lngcombob" HorizontalAlignment="Left" Height="17" Margin="266,58,0,0" VerticalAlignment="Top" Width="116" Text="Русский" Padding="0" Background="{x:Null}">
                     <ComboBoxItem Content="Русский"/>
                     <ComboBoxItem Content="English"/>
                     <ComboBoxItem Content="Украïнська"/>
                     <ComboBoxItem Content="Deutsch (coming soon)" IsEnabled="False"/>
                     <ComboBoxItem Content="日本人 (coming soon)" IsEnabled="False"/>
                 </ComboBox>
-                <Button x:Name="SaveBtn01" Content="СОХРАНИТЬ" HorizontalAlignment="Left" Height="22" Margin="217,187,0,0" Width="102" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Padding="8,4,2,4" VerticalAlignment="Top">
+                <Button x:Name="SaveBtn01" Content="СОХРАНИТЬ" HorizontalAlignment="Left" Height="22" Margin="304,187,0,0" Width="88" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Padding="0,4,2,4" VerticalAlignment="Top">
                     <Button.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <LinearGradientBrush.RelativeTransform>
@@ -475,10 +475,43 @@
                         </LinearGradientBrush>
                     </Button.Foreground>
                 </Button>
+                <Label x:Name="rrate_label" Content="Частота обновления" HorizontalAlignment="Left" Height="17" Margin="0,77,0,0" VerticalAlignment="Top" Width="261" Foreground="Black" FontSize="12" Padding="4,2,4,0"/>
+                <Slider x:Name="rrateslider" HorizontalAlignment="Left" Height="20" Margin="266,86,0,0" VerticalAlignment="Top" Width="83" Minimum="1" Maximum="300" SmallChange="10" TickFrequency="20" Value="5">
+                    <Slider.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF4385FB"/>
+                            <GradientStop Color="#FF8348FF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Slider.Foreground>
+                </Slider>
+                <Label x:Name="rratevaluelabel" Content="0 с." HorizontalAlignment="Left" Height="22" Margin="354,86,0,0" VerticalAlignment="Top" Width="38" HorizontalContentAlignment="Right" FontSize="11" VerticalContentAlignment="Center" Padding="0,4" RenderTransformOrigin="0.474,0.5"/>
+                <Label x:Name="refreshrate_note_label" Content="Настройки сохраняются не сразу." HorizontalAlignment="Left" Height="15" Margin="0,94,0,0" VerticalAlignment="Top" Width="261" Padding="4,0" FontSize="11"/>
             </Grid>
         </materialDesign:Card>
-        <Grid x:Name="startupscreen" HorizontalAlignment="Left" Height="280" VerticalAlignment="Top" Width="600" Background="White" Margin="16,16,0,0">
-            <ProgressBar Height="6" Margin="66,245,66,0" VerticalAlignment="Top" Background="#FFDADADA" BorderBrush="#FFDADADA" IsIndeterminate="True">
+        <Grid x:Name="startupscreen" HorizontalAlignment="Left" Height="280" VerticalAlignment="Top" Width="600" Margin="16,16,0,0">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-399.472" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#F9004F9C" Offset="0"/>
+                    <GradientStop Color="#F94F27B0" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <ProgressBar Height="6" Margin="66,245,66,0" VerticalAlignment="Top" Background="#7FFFFFFF" BorderBrush="#7FFFFFFF" IsIndeterminate="True">
                 <ProgressBar.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <LinearGradientBrush.RelativeTransform>
@@ -489,12 +522,12 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF4385FB"/>
-                        <GradientStop Color="#FF8348FF" Offset="1"/>
+                        <GradientStop Color="#FF188BFF"/>
+                        <GradientStop Color="#FF7737FF" Offset="1"/>
                     </LinearGradientBrush>
                 </ProgressBar.Foreground>
             </ProgressBar>
-            <Image Margin="148,59,148,93" Source="logo-003.png">
+            <Image Margin="148,50,148,70" Source="logo-003.png">
                 <Image.Effect>
                     <DropShadowEffect BlurRadius="10" Opacity="0.7" RenderingBias="Quality"/>
                 </Image.Effect>

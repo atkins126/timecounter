@@ -11,11 +11,11 @@ Imports System.Windows
 
 ' Проверьте значения атрибутов сборки
 
-<Assembly: AssemblyTitle("Time_Counter_WPF")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyTitle("Time Counter")>
+<Assembly: AssemblyDescription("DMITComp Time Counter")>
+<Assembly: AssemblyCompany("DMIT Computers")>
 <Assembly: AssemblyProduct("Time_Counter_WPF")>
-<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyCopyright("© 2019-2020 DMIT Computers. All rights reserved.")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 
@@ -55,5 +55,6 @@ Imports System.Windows
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("2.0.0.2006")>
+<Assembly: AssemblyFileVersion("2.0.0.2006")>
+<Assembly: NeutralResourcesLanguage("en")>
