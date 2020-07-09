@@ -28,7 +28,7 @@ Public Class aboutprogram
         Dim currentUserKey As RegistryKey = Registry.CurrentUser
         Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
         Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
-        Dim Version As String = "2.0.0 RC1 (June 23, 2020)"
+        Dim Version As String = "2.0.0 RC2 (Jule 9, 2020)"
         If languagesetgs = "ru" Then
             aboutdlgtitle.Content = "О программе " + Chr(2) + "Счетчик времени DMITComp" + Chr(2)
             programname.Content = "Счетчик времени DMIT Computers"
@@ -49,6 +49,13 @@ Public Class aboutprogram
             programversion.Content = "Версiя " + Version
             copyrightlabel.Content = "© 2019-2020 DMIT Computers. Всi права захищенi."
             description.Text = "Проект Time Counter (Лічильник часу) створений на основі проекту Year Progress, що розробляється Філіпом Грасеком в 2015-му.  Програма " + Chr(2) + "Лічильник часу" + Chr(2) + " є прогрессбар, який починається з початку поточного року (01.01) і закінчується кінцем поточного року (31.12), і число минулих днів/відсотків з початку поточного року. " + Chr(2) + "Лічильник часу" + Chr(2) + "портовано на декількох мовах програмування, включаючи Java, JavaScript, Delphi (Pascal) та Visual Basic."
+        End If
+        If languagesetgs = "de" Then
+            aboutprgfrm.aboutdlgtitle.Content = "Über das Programm " + Chr(2) + "DMITComp Zeitzähler" + Chr(2)
+            aboutprgfrm.programname.Content = "DMIT Computers Zeitzähler"
+            aboutprgfrm.programversion.Content = "Ausführung " + Version
+            aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. Alle Rechte vorbehalten."
+            description.Text = "Die Beschreibung ist derzeit in drei Sprachen verfügbar."
         End If
 
         Timer1Start()
@@ -64,7 +71,7 @@ Public Class aboutprogram
         Dim currentUserKey As RegistryKey = Registry.CurrentUser
         Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
         Dim languagesetgs As String = dmitpctckey.GetValue("Language").ToString()
-        Dim Version As String = "2.0.0 RC1.5 (June 24, 2020)"
+        Dim Version As String = "2.0.0 RC2 (Jule 9, 2020)"
         If languagesetgs = "ru" Then
             aboutdlgtitle.Content = "О программе " + Chr(2) + "Счетчик времени DMITComp" + Chr(2)
             programname.Content = "Счетчик времени DMIT Computers"
@@ -85,6 +92,13 @@ Public Class aboutprogram
             programversion.Content = "Версiя " + Version
             copyrightlabel.Content = "© 2019-2020 DMIT Computers. Всi права захищенi."
             description.Text = "Проект Time Counter (Лічильник часу) створений на основі проекту Year Progress, що розробляється Філіпом Грасеком в 2015-му.  Програма " + Chr(2) + "Лічильник часу" + Chr(2) + " є прогрессбар, який починається з початку поточного року (01.01) і закінчується кінцем поточного року (31.12), і число минулих днів/відсотків з початку поточного року. " + Chr(2) + "Лічильник часу" + Chr(2) + "портовано на декількох мовах програмування, включаючи Java, JavaScript, Delphi (Pascal) та Visual Basic."
+        End If
+        If languagesetgs = "de" Then
+            aboutprgfrm.aboutdlgtitle.Content = "Über das Programm " + Chr(2) + "DMITComp Zeitzähler" + Chr(2)
+            aboutprgfrm.programname.Content = "DMIT Computers Zeitzähler"
+            aboutprgfrm.programversion.Content = "Ausführung " + Version
+            aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. Alle Rechte vorbehalten."
+            description.Text = "Die Beschreibung ist derzeit in drei Sprachen verfügbar."
         End If
         Dim darkthsetgs As String = dmitpctckey.GetValue("DarkTheme").ToString()
 

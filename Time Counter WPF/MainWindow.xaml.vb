@@ -1,4 +1,4 @@
-Imports System.Globalization
+ÔªøImports System.Globalization
 Imports System.Windows.Threading
 Imports Microsoft.Win32
 
@@ -6,6 +6,8 @@ Class MainWindow
 
     Public timer1 As New DispatcherTimer()
     Public timer2 As New DispatcherTimer()
+    Public NoLeakMem As New DispatcherTimer()
+    Public NoShowWarn As Integer
 
     Private i As Integer = 0
     Private Sub mainform_Loaded(sender As Object, e As RoutedEventArgs) Handles mainform.Loaded
@@ -26,8 +28,15 @@ Class MainWindow
     End Sub
 
     Private Sub Timer1Start()
+        NoLeakMem.Interval = TimeSpan.FromSeconds(2)
+        AddHandler NoLeakMem.Tick, AddressOf Me.NoLeakMemProcedure
         timer1.Interval = TimeSpan.FromMilliseconds(10000)
         AddHandler timer1.Tick, AddressOf Me.Timer1Tick
+        NoLeakMem.Start()
+    End Sub
+
+    Private Sub NoLeakMemProcedure(sender As Object, e As EventArgs)
+        timer1.IsEnabled = True
         timer1.Start()
     End Sub
 
@@ -43,104 +52,125 @@ Class MainWindow
             Dim EngMonthName As String
             Dim RusMonthName As String
             Dim UkrMonthName As String
+            Dim DeuMonthName As String
             Dim EngWeekDaySName As String
             Dim RusWeekDaySName As String
             Dim UkrWeekDaySName As String
+            Dim DeuWeekDaySName As String
             Dim MinuteWZ As String
             If todaydate.DayOfWeek = 1 Then
                 EngWeekDaySName = "Mon"
-                RusWeekDaySName = "œÌ‰"
-                UkrWeekDaySName = "œÌ‰"
+                RusWeekDaySName = "–ü–Ω–¥"
+                UkrWeekDaySName = "–ü–Ω–¥"
+                DeuWeekDaySName = "Mon"
             End If
             If todaydate.DayOfWeek = 2 Then
                 EngWeekDaySName = "Tue"
-                RusWeekDaySName = "¬Ú"
-                UkrWeekDaySName = "¬Ú"
+                RusWeekDaySName = "–í—Ç—Ä"
+                UkrWeekDaySName = "–í—Ç—Ä"
+                DeuWeekDaySName = "Die"
             End If
             If todaydate.DayOfWeek = 3 Then
                 EngWeekDaySName = "Wed"
-                RusWeekDaySName = "—‰"
-                UkrWeekDaySName = "—‰"
+                RusWeekDaySName = "–°—Ä–¥"
+                UkrWeekDaySName = "–°—Ä–¥"
+                DeuWeekDaySName = "Mit"
             End If
             If todaydate.DayOfWeek = 4 Then
                 EngWeekDaySName = "Thu"
-                RusWeekDaySName = "◊Ú‚"
-                UkrWeekDaySName = "◊Ú‚"
+                RusWeekDaySName = "–ß—Ç–≤"
+                UkrWeekDaySName = "–ß—Ç–≤"
+                DeuWeekDaySName = "Don"
             End If
             If todaydate.DayOfWeek = 5 Then
                 EngWeekDaySName = "Fri"
-                RusWeekDaySName = "œÚÌ"
-                UkrWeekDaySName = "œÚÌ"
+                RusWeekDaySName = "–ü—Ç–Ω"
+                UkrWeekDaySName = "–ü—Ç–Ω"
+                DeuWeekDaySName = "Fre"
             End If
             If todaydate.DayOfWeek = 6 Then
                 EngWeekDaySName = "Sat"
-                RusWeekDaySName = "—·Ú"
-                UkrWeekDaySName = "—·Ú"
+                RusWeekDaySName = "–°–±—Ç"
+                UkrWeekDaySName = "–°–±—Ç"
+                DeuWeekDaySName = "Sam"
             End If
             If todaydate.DayOfWeek = 0 Then
                 EngWeekDaySName = "Sun"
-                RusWeekDaySName = "¬ÒÍ"
-                UkrWeekDaySName = "Õ‰Î"
+                RusWeekDaySName = "–í—Å–∫"
+                UkrWeekDaySName = "–ù–¥–ª"
+                DeuWeekDaySName = "Son"
             End If
             If Month(Now) = 1 Then
-                RusMonthName = " ﬂÕ¬¿–ﬂ "
+                RusMonthName = " –Ø–ù–í–ê–†–Ø "
                 EngMonthName = "JANUARY "
-                UkrMonthName = " —I◊Õﬂ "
+                UkrMonthName = " –°I–ß–ù–Ø "
+                DeuMonthName = " JANUAR "
             End If
             If Month(Now) = 2 Then
-                RusMonthName = " ‘≈¬–¿Àﬂ "
+                RusMonthName = " –§–ï–í–†–ê–õ–Ø "
                 EngMonthName = "FEBRUARY "
-                UkrMonthName = " Àﬁ“Œ√Œ "
+                UkrMonthName = " –õ–Æ–¢–û–ì–û "
+                DeuMonthName = " FEBRUAR "
             End If
             If Month(Now) = 3 Then
-                RusMonthName = " Ã¿–“¿ "
+                RusMonthName = " –ú–ê–†–¢–ê "
                 EngMonthName = "MARCH "
-                UkrMonthName = " ¡≈–≈«Õﬂ "
+                UkrMonthName = " –ë–ï–†–ï–ó–ù–Ø "
+                DeuMonthName = " M√ÑRZ "
             End If
             If Month(Now) = 4 Then
-                RusMonthName = " ¿œ–≈Àﬂ "
+                RusMonthName = " –ê–ü–†–ï–õ–Ø "
                 EngMonthName = "APRIL "
-                UkrMonthName = "  ¬I“Õﬂ "
+                UkrMonthName = " –ö–íI–¢–ù–Ø "
+                DeuMonthName = " APRIL "
             End If
             If Month(Now) = 5 Then
-                RusMonthName = " Ã¿ﬂ "
+                RusMonthName = " –ú–ê–Ø "
                 EngMonthName = "MAY "
-                UkrMonthName = " “–¿¬Õﬂ "
+                UkrMonthName = " –¢–†–ê–í–ù–Ø "
+                DeuMonthName = " MAI "
             End If
             If Month(Now) = 6 Then
-                RusMonthName = " »ﬁÕﬂ "
+                RusMonthName = " –ò–Æ–ù–Ø "
                 EngMonthName = "JUNE "
-                UkrMonthName = " ◊≈–¬Õﬂ "
+                UkrMonthName = " –ß–ï–†–í–ù–Ø "
+                DeuMonthName = " JUNI "
             End If
             If Month(Now) = 7 Then
-                RusMonthName = " »ﬁÀﬂ "
+                RusMonthName = " –ò–Æ–õ–Ø "
                 EngMonthName = "JULE "
-                UkrMonthName = " À»œÕﬂ "
+                UkrMonthName = " –õ–ò–ü–ù–Ø "
+                DeuMonthName = " JULI "
             End If
             If Month(Now) = 8 Then
-                RusMonthName = " ‡‚„ÛÒÚ‡ "
+                RusMonthName = " –∞–≤–≥—É—Å—Ç–∞ "
                 EngMonthName = "AUGUST "
-                UkrMonthName = " —≈–œÕﬂ "
+                UkrMonthName = " –°–ï–†–ü–ù–Ø "
+                DeuMonthName = " AUGUST "
             End If
             If Month(Now) = 9 Then
-                RusMonthName = " —≈Õ“ﬂ¡–ﬂ "
+                RusMonthName = " –°–ï–ù–¢–Ø–ë–†–Ø "
                 EngMonthName = "SEPTEMBER "
-                UkrMonthName = " ¬≈–≈—Õﬂ "
+                UkrMonthName = " –í–ï–†–ï–°–ù–Ø "
+                DeuMonthName = " SEPTEMBER "
             End If
             If Month(Now) = 10 Then
-                RusMonthName = " Œ “ﬂ¡–ﬂ "
+                RusMonthName = " –û–ö–¢–Ø–ë–†–Ø "
                 EngMonthName = "OCTOBER "
-                UkrMonthName = " ∆Œ¬“Õﬂ "
+                UkrMonthName = " –ñ–û–í–¢–ù–Ø "
+                DeuMonthName = " OKTOBER "
             End If
             If Month(Now) = 11 Then
-                RusMonthName = " ÕŒﬂ¡–ﬂ "
+                RusMonthName = " –ù–û–Ø–ë–†–Ø "
                 EngMonthName = "NOVEMBER "
-                UkrMonthName = " À»—“Œœ¿ƒ¿ "
+                UkrMonthName = " –õ–ò–°–¢–û–ü–ê–î–ê "
+                DeuMonthName = " NOVEMBER "
             End If
             If Month(Now) = 12 Then
-                RusMonthName = " ƒ≈ ¿¡–ﬂ "
+                RusMonthName = " –î–ï–ö–ê–ë–†–Ø "
                 EngMonthName = "DECEMBER "
-                UkrMonthName = " √–”ƒÕﬂ "
+                UkrMonthName = " –ì–†–£–î–ù–Ø "
+                DeuMonthName = " DEZEMBER "
             End If
             If Minute(Now) < 10 Then
                 MinuteWZ = "0" + Convert.ToString(Minute(Now))
@@ -151,13 +181,16 @@ Class MainWindow
                 daycprogressbar.Maximum = 6
                 daycprogressbar.Value = Hour(Now) - 6
                 If languagesetgs = "ru" Then
-                    dayclabel.Content = "”ÚÓ"
+                    dayclabel.Content = "–£—Ç—Ä–æ"
                 End If
                 If languagesetgs = "en" Then
                     dayclabel.Content = "Morning"
                 End If
                 If languagesetgs = "ua" Then
-                    dayclabel.Content = "–‡ÌÓÍ"
+                    dayclabel.Content = "–†–∞–Ω–æ–∫"
+                End If
+                If languagesetgs = "de" Then
+                    dayclabel.Content = "Morgen"
                 End If
                 daycprglabel.Content = Convert.ToString(Math.Round(((Hour(Now) - 6) + ((Minute(Now) + (Second(Now) / 60)) / 60)) / 0.06, 2)) + "%"
             End If
@@ -165,13 +198,16 @@ Class MainWindow
                 daycprogressbar.Maximum = 6
                 daycprogressbar.Value = (Hour(Now) + (((Minute(Now) + (Second(Now) / 60)) / 60))) - 12
                 If languagesetgs = "ru" Then
-                    dayclabel.Content = "ƒÂÌ¸"
+                    dayclabel.Content = "–î–µ–Ω—å"
                 End If
                 If languagesetgs = "en" Then
                     dayclabel.Content = "Daytime"
                 End If
                 If languagesetgs = "ua" Then
-                    dayclabel.Content = "ƒÂÌ¸"
+                    dayclabel.Content = "–î–µ–Ω—å"
+                End If
+                If languagesetgs = "de" Then
+                    dayclabel.Content = "Tag"
                 End If
                 daycprglabel.Content = Convert.ToString(Math.Round(((Hour(Now) - 12) + ((Minute(Now) + (Second(Now) / 60)) / 60)) / 0.06, 2)) + "%"
             End If
@@ -179,13 +215,16 @@ Class MainWindow
                 daycprogressbar.Maximum = 6
                 daycprogressbar.Value = Hour(Now) - 18
                 If languagesetgs = "ru" Then
-                    dayclabel.Content = "¬Â˜Â"
+                    dayclabel.Content = "–í–µ—á–µ—Ä"
                 End If
                 If languagesetgs = "en" Then
                     dayclabel.Content = "Evening"
                 End If
                 If languagesetgs = "ua" Then
-                    dayclabel.Content = "¬Â˜i"
+                    dayclabel.Content = "–í–µ—ái—Ä"
+                End If
+                If languagesetgs = "de" Then
+                    dayclabel.Content = "Abend"
                 End If
                 daycprglabel.Content = Convert.ToString(Math.Round(((Hour(Now) - 18) + ((Minute(Now) + (Second(Now) / 60)) / 60)) / 0.06, 2)) + "%"
             End If
@@ -193,18 +232,21 @@ Class MainWindow
                 daycprogressbar.Maximum = 6
                 daycprogressbar.Value = Hour(Now)
                 If languagesetgs = "ru" Then
-                    dayclabel.Content = "ÕÓ˜¸"
+                    dayclabel.Content = "–ù–æ—á—å"
                 End If
                 If languagesetgs = "ru" Then
                     dayclabel.Content = "Night"
                 End If
                 If languagesetgs = "ua" Then
-                    dayclabel.Content = "Õi˜"
+                    dayclabel.Content = "–ùi—á"
+                End If
+                If languagesetgs = "de" Then
+                    dayclabel.Content = "Nacht"
                 End If
                 daycprglabel.Content = Convert.ToString(Math.Round((Hour(Now) + ((Minute(Now) + (Second(Now) / 60)) / 60)) / 0.06, 2)) + "%"
             End If
             Dim aboutprgfrm As New aboutprogram
-#Disable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Disable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
             Dim Version As String = "2.0.0 Beta (June 22, 2020)"
             Dim LastDayInMonth As Date
             LastDayInMonth = DateSerial(Year(Now), Month(Now) + 1, 0)
@@ -230,28 +272,30 @@ Class MainWindow
             If languagesetgs = "ru" Then
                 janlabel.Content = "01." + Convert.ToString(Year(Now))
                 declabel.Content = "12." + Convert.ToString(Year(Now))
-                todaylabel.Content = "—≈√ŒƒÕﬂ " + Convert.ToString(Day(Now)) + RusMonthName + Convert.ToString(Year(Now))
+                todaylabel.Content = "–°–ï–ì–û–î–ù–Ø " + Convert.ToString(Day(Now)) + RusMonthName + Convert.ToString(Year(Now))
                 weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + RusWeekDaySName
-                daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " ‰Ì."
-                monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " ‰Ì."
-                SettingsDlgTitle.Content = "Õ‡ÒÚÓÈÍË"
-                SaveBtn01.Content = "—Œ’–¿Õ»“‹"
-                DarkThemeCb.Content = "“ÂÏÌ‡ˇ ÚÂÏ‡ (˝ÍÒÔÂËÏÂÌÚ)"
-                title.Content = "—˜ÂÚ˜ËÍ ‚ÂÏÂÌË DMITComp"
-                StatsDlgTitle.Content = "—Ú‡ÚËÒÚËÍ‡"
-                yeartitle.Content = "√Ó‰"
-                MonthTitle.Content = "ÃÂÒˇˆ"
-                WeekTitle.Content = "ÕÂ‰ÂÎˇ"
-                DayGTitle.Content = "ƒÂÌ¸ (Ó·˘ËÈ ÔÓ„ÂÒÒ)"
-                closeFrameBtn.Content = "«¿ –€“‹"
-                refreshrate_note_label.Content = "Õ‡ÒÚÓÈÍË ÒÓı‡Ìˇ˛ÚÒˇ ÌÂ Ò‡ÁÛ."
-                aboutprgfrm.aboutdlgtitle.Content = "Œ ÔÓ„‡ÏÏÂ " + Chr(2) + "—˜ÂÚ˜ËÍ ‚ÂÏÂÌË DMITComp" + Chr(2)
-                aboutprgfrm.programname.Content = "—˜ÂÚ˜ËÍ ‚ÂÏÂÌË DMIT Computers"
-                aboutprgfrm.programversion.Content = "¬ÂÒËˇ " + Version
-                aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. ¬ÒÂ Ô‡‚‡ Á‡˘Ë˘ÂÌ˚."
-                uilng_label.Content = "ﬂÁ˚Í ËÌÚÂÙÂÈÒ‡ (UI Language)"
-                rrate_label.Content = "◊‡ÒÚÓÚ‡ Ó·ÌÓ‚ÎÂÌËˇ (‚ ÒÂÍÛÌ‰‡ı)"
-                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " Ò."
+                daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " –¥–Ω."
+                monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " –¥–Ω."
+                SettingsDlgTitle.Content = "–ù–∞—Å—Ç—Ä–æ–π–∫–∏"
+                SaveBtn01.Content = "–°–û–•–†–ê–ù–ò–¢–¨"
+                DarkThemeCb.Content = "–¢–µ–º–Ω–∞—è —Ç–µ–º–∞ (—ç–∫—Å–ø–µ—Ä–∏–º–µ–Ω—Ç)"
+                title.Content = "–°—á–µ—Ç—á–∏–∫ –≤—Ä–µ–º–µ–Ω–∏ DMITComp"
+                StatsDlgTitle.Content = "–°—Ç–∞—Ç–∏—Å—Ç–∏–∫–∞"
+                yeartitle.Content = "–ì–æ–¥"
+                MonthTitle.Content = "–ú–µ—Å—è—Ü"
+                WeekTitle.Content = "–ù–µ–¥–µ–ª—è"
+                DayGTitle.Content = "–î–µ–Ω—å (–æ–±—â–∏–π –ø—Ä–æ–≥—Ä–µ—Å—Å)"
+                closeFrameBtn.Content = "–ó–ê–ö–†–´–¢–¨"
+                refreshrate_note_label.Content = "–ù–∞—Å—Ç—Ä–æ–π–∫–∏ —Å–æ—Ö—Ä–∞–Ω—è—é—Ç—Å—è –Ω–µ —Å—Ä–∞–∑—É."
+                aboutprgfrm.aboutdlgtitle.Content = "–û –ø—Ä–æ–≥—Ä–∞–º–º–µ " + Chr(2) + "–°—á–µ—Ç—á–∏–∫ –≤—Ä–µ–º–µ–Ω–∏ DMITComp" + Chr(2)
+                aboutprgfrm.programname.Content = "–°—á–µ—Ç—á–∏–∫ –≤—Ä–µ–º–µ–Ω–∏ DMIT Computers"
+                aboutprgfrm.programversion.Content = "–í–µ—Ä—Å–∏—è " + Version
+                aboutprgfrm.copyrightlabel.Content = "¬© 2019-2020 DMIT Computers. –í—Å–µ –ø—Ä–∞–≤–∞ –∑–∞—â–∏—â–µ–Ω—ã."
+                uilng_label.Content = "–Ø–∑—ã–∫ –∏–Ω—Ç–µ—Ä—Ñ–µ–π—Å–∞ (UI Language)"
+                rrate_label.Content = "–ß–∞—Å—Ç–æ—Ç–∞ –æ–±–Ω–æ–≤–ª–µ–Ω–∏—è (–≤ —Å–µ–∫—É–Ω–¥–∞—Ö)"
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " —Å."
+                warninglabel.Content = "–ê–≤—Ç–æ–æ–±–Ω–æ–≤–ª–µ–Ω–∏–µ –ø—Ä–∏–æ—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω–æ –¥–ª—è —Å–æ—Ö—Ä–∞–Ω–µ–Ω–∏—è –±—ã—Å—Ç—Ä–æ–π —Ä–∞–±–æ—Ç—ã –ø—Ä–∏–ª–æ–∂–µ–Ω–∏—è."
+                lngcombob.SelectedIndex = 0
             End If
             If languagesetgs = "en" Then
                 janlabel.Content = "01." + Convert.ToString(Year(Now))
@@ -274,36 +318,68 @@ Class MainWindow
                 aboutprgfrm.aboutdlgtitle.Content = "About DMITComp Time Counter"
                 aboutprgfrm.programname.Content = "DMIT Computers Time Counter"
                 aboutprgfrm.programversion.Content = "Version " + Version
-                aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. All rights reserved."
+                aboutprgfrm.copyrightlabel.Content = "¬© 2019-2020 DMIT Computers. All rights reserved."
                 uilng_label.Content = "Interface Language"
                 rrate_label.Content = "Refresh Rate (in seconds)"
                 rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+                warninglabel.Content = "Autorefresh paused to keep application running fast."
+                lngcombob.SelectedIndex = 1
             End If
             If languagesetgs = "ua" Then
                 janlabel.Content = "01." + Convert.ToString(Year(Now))
                 declabel.Content = "12." + Convert.ToString(Year(Now))
-                todaylabel.Content = "—‹Œ√ŒƒÕI " + Convert.ToString(Day(Now)) + UkrMonthName + Convert.ToString(Year(Now))
+                todaylabel.Content = "–°–¨–û–ì–û–î–ùI " + Convert.ToString(Day(Now)) + UkrMonthName + Convert.ToString(Year(Now))
                 weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + UkrWeekDaySName
-                daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " ‰Ì."
-                monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " ‰Ì."
-                SettingsDlgTitle.Content = "Õ‡Î‡¯ÚÛ‚‡ÌÌˇ"
-                SaveBtn01.Content = "«¡≈–≈√“»"
-                DarkThemeCb.Content = "“ÂÏÌ‡ ÚÂÏ‡ (ÂÍÒÔÂËÏÂÌÚ)"
-                refreshrate_note_label.Content = "Õ‡Î‡¯ÚÛ‚‡ÌÌˇ Á·Âi„‡˛Ú¸Òˇ ÌÂ ‚i‰‡ÁÛ."
-                title.Content = "Ài˜ËÎ¸ÌËÍ ˜‡ÒÛ DMITComp"
-                StatsDlgTitle.Content = "—Ú‡ÚËÒÚËÍ‡"
-                yeartitle.Content = "–iÍ"
-                MonthTitle.Content = "ÃiÒˇˆ¸"
-                WeekTitle.Content = "“ËÊ‰ÂÌ¸"
-                DayGTitle.Content = "ƒÂÌ¸ (Á‡„‡Î¸ÌËÈ ÔÓ„ÂÒ)"
-                closeFrameBtn.Content = "«¿ –»“»"
-                aboutprgfrm.aboutdlgtitle.Content = "œÓ ÔÓ„‡ÏÛ " + Chr(2) + "Ài˜ËÎ¸ÌËÍ ˜‡ÒÛ DMITComp" + Chr(2)
-                aboutprgfrm.programname.Content = "Ài˜ËÎ¸ÌËÍ ˜‡ÒÛ DMIT Computers"
-                aboutprgfrm.programversion.Content = "¬ÂÒiˇ " + Version
-                aboutprgfrm.copyrightlabel.Content = "© 2019-2020 DMIT Computers. ¬Òi Ô‡‚‡ Á‡ıË˘ÂÌi."
-                uilng_label.Content = "ÃÓ‚‡ iÌÚÂÙÂÈÒÛ (UI Language)"
-                rrate_label.Content = "◊‡ÒÚÓÚ‡ ÓÌÓ‚ÎÂÌÌˇ (‚ ÒÂÍÛÌ‰‡ı)"
-                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " Ò."
+                daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " –¥–Ω."
+                monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " –¥–Ω."
+                SettingsDlgTitle.Content = "–ù–∞–ª–∞—à—Ç—É–≤–∞–Ω–Ω—è"
+                SaveBtn01.Content = "–ó–ë–ï–†–ï–ì–¢–ò"
+                DarkThemeCb.Content = "–¢–µ–º–Ω–∞ —Ç–µ–º–∞ (–µ–∫—Å–ø–µ—Ä–∏–º–µ–Ω—Ç)"
+                refreshrate_note_label.Content = "–ù–∞–ª–∞—à—Ç—É–≤–∞–Ω–Ω—è –∑–±–µ—Äi–≥–∞—é—Ç—å—Å—è –Ω–µ –≤i–¥—Ä–∞–∑—É."
+                title.Content = "–õi—á–∏–ª—å–Ω–∏–∫ —á–∞—Å—É DMITComp"
+                StatsDlgTitle.Content = "–°—Ç–∞—Ç–∏—Å—Ç–∏–∫–∞"
+                yeartitle.Content = "–†i–∫"
+                MonthTitle.Content = "–úi—Å—è—Ü—å"
+                WeekTitle.Content = "–¢–∏–∂–¥–µ–Ω—å"
+                DayGTitle.Content = "–î–µ–Ω—å (–∑–∞–≥–∞–ª—å–Ω–∏–π –ø—Ä–æ–≥—Ä–µ—Å)"
+                closeFrameBtn.Content = "–ó–ê–ö–†–ò–¢–ò"
+                aboutprgfrm.aboutdlgtitle.Content = "–ü—Ä–æ –ø—Ä–æ–≥—Ä–∞–º—É " + Chr(2) + "–õi—á–∏–ª—å–Ω–∏–∫ —á–∞—Å—É DMITComp" + Chr(2)
+                aboutprgfrm.programname.Content = "–õi—á–∏–ª—å–Ω–∏–∫ —á–∞—Å—É DMIT Computers"
+                aboutprgfrm.programversion.Content = "–í–µ—Ä—Åi—è " + Version
+                aboutprgfrm.copyrightlabel.Content = "¬© 2019-2020 DMIT Computers. –í—Åi –ø—Ä–∞–≤–∞ –∑–∞—Ö–∏—â–µ–Ωi."
+                uilng_label.Content = "–ú–æ–≤–∞ i–Ω—Ç–µ—Ä—Ñ–µ–π—Å—É (UI Language)"
+                rrate_label.Content = "–ß–∞—Å—Ç–æ—Ç–∞ –æ–Ω–æ–≤–ª–µ–Ω–Ω—è (–≤ —Å–µ–∫—É–Ω–¥–∞—Ö)"
+                warninglabel.Content = "–ê–≤—Ç–æ–º–∞—Ç–∏—á–Ω–µ –æ–Ω–æ–≤–ª–µ–Ω–Ω—è –ø—Ä–∏–∑—É–ø–∏–Ω–µ–Ω–æ –¥–ª—è –∑–±–µ—Ä–µ–∂–µ–Ω–Ω—è —à–≤–∏–¥–∫–æ—ó —Ä–æ–±–æ—Ç–∏ –ø—Ä–æ–≥—Ä–∞–º–∏."
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " —Å."
+                lngcombob.SelectedIndex = 2
+            End If
+            If languagesetgs = "de" Then
+                janlabel.Content = "01." + Convert.ToString(Year(Now))
+                declabel.Content = "12." + Convert.ToString(Year(Now))
+                todaylabel.Content = "HEUTE IST DER " + Convert.ToString(Day(Now)) + "." + DeuMonthName + Convert.ToString(Year(Now))
+                weekprglabel.Content = Convert.ToString(Math.Round(weekDayPerc, 2)) + "% / " + DeuWeekDaySName
+                daysprglabel.Content = Convert.ToString(Math.Round(days, 2)) + "% / " + Convert.ToString(todaydate.DayOfYear) + " t."
+                monthprglabel.Content = Convert.ToString(Math.Round(months, 2)) + "% / " + Convert.ToString(Day(Now)) + " t."
+                SettingsDlgTitle.Content = "Einstellungen"
+                SaveBtn01.Content = "SPEICHERN"
+                DarkThemeCb.Content = "Dunkles Thema (experimentell)"
+                refreshrate_note_label.Content = "Einstellungen werden nicht sofort gespeichert."
+                title.Content = "DMITComp Zeitz√§hler"
+                StatsDlgTitle.Content = "Statistiken"
+                yeartitle.Content = "Jahr"
+                MonthTitle.Content = "Monate"
+                WeekTitle.Content = "Woche"
+                DayGTitle.Content = "Tag (gesamltfortschritt)"
+                closeFrameBtn.Content = "Schlie√üen"
+                aboutprgfrm.aboutdlgtitle.Content = "√úber das Programm " + Chr(2) + "DMITComp Zeitz√§hler" + Chr(2)
+                aboutprgfrm.programname.Content = "DMIT Computers Zeitz√§hler"
+                aboutprgfrm.programversion.Content = "Ausf√ºhrung " + Version
+                aboutprgfrm.copyrightlabel.Content = "¬© 2019-2020 DMIT Computers. Alle Rechte vorbehalten."
+                uilng_label.Content = "Schnittstellen Sprache (UI Language)"
+                rrate_label.Content = "Aktualisierungsrate (in Sekunden)"
+                warninglabel.Content = "Automatische Updates werden angehalten, damit de Anwendung schnell l√§uft."
+                rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+                lngcombob.SelectedIndex = 3
             End If
             If darkthsetgs = "Enabled" Then
                 Dim LGB As New LinearGradientBrush
@@ -388,8 +464,8 @@ Class MainWindow
             End If
             janlabel.Content = "01." + Convert.ToString(Year(Now))
             declabel.Content = "12." + Convert.ToString(Year(Now))
-            timer1.Interval = TimeSpan.FromSeconds(Convert.ToInt32(Math.Round(rrateslider.Value)))
             startupscreen.Visibility = Visibility.Hidden
+            NoLeakMem.Start()
         Catch ex As Exception
             Dim currentUserKey As RegistryKey = Registry.CurrentUser
             Dim dmitpctckey As RegistryKey = currentUserKey.CreateSubKey("Software\\DMITComp\\Time Counter")
@@ -403,9 +479,9 @@ Class MainWindow
 
     Private Sub ListBoxItem2_Selected(sender As Object, e As RoutedEventArgs) Handles about_item.Selected
         Dim aboutprgfrm As New aboutprogram
-#Disable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Disable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
         aboutprgfrm.Show()
-#Enable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Enable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
     End Sub
 
     Private Sub menuBtn_Click(sender As Object, e As RoutedEventArgs) Handles menuBtn.Click
@@ -433,6 +509,13 @@ Class MainWindow
                 menubox_ukr.Visibility = Visibility.Hidden
             End If
         End If
+        If languagesetgs = "de" Then
+            If menubox_deu.Visibility = Visibility.Hidden Then
+                menubox_deu.Visibility = Visibility.Visible
+            Else
+                menubox_deu.Visibility = Visibility.Hidden
+            End If
+        End If
     End Sub
 
     Private Sub stats_item_Selected(sender As Object, e As RoutedEventArgs) Handles stats_item.Selected
@@ -455,9 +538,9 @@ Class MainWindow
 
     Private Sub about_item1_Selected(sender As Object, e As RoutedEventArgs) Handles about_item1.Selected
         Dim aboutprgfrm As New aboutprogram
-#Disable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Disable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
         aboutprgfrm.Show()
-#Enable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Enable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
     End Sub
 
     Private Sub settingsBtn_Click(sender As Object, e As RoutedEventArgs) Handles settingsBtn.Click
@@ -474,6 +557,9 @@ Class MainWindow
         End If
         If languagesetgs = "ua" Then
             menubox_ukr.Visibility = Visibility.Hidden
+        End If
+        If languagesetgs = "de" Then
+            menubox_deu.Visibility = Visibility.Hidden
         End If
     End Sub
 
@@ -495,6 +581,12 @@ Class MainWindow
         If lngcombob.SelectedIndex = 2 Then
             dmitpctckey.SetValue("Language", "ua")
         End If
+        If lngcombob.SelectedIndex = 3 Then
+            dmitpctckey.SetValue("Language", "de")
+        End If
+        If lngcombob.SelectedIndex = 4 Then
+            dmitpctckey.SetValue("Language", "jp")
+        End If
     End Sub
 
     Private Sub stats_item2_Selected(sender As Object, e As RoutedEventArgs) Handles stats_item2.Selected
@@ -504,9 +596,9 @@ Class MainWindow
 
     Private Sub about_item2_Selected(sender As Object, e As RoutedEventArgs) Handles about_item2.Selected
         Dim aboutprgfrm As New aboutprogram
-#Disable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Disable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
         aboutprgfrm.Show()
-#Enable Warning BC42104 ' œÂÂÏÂÌÌ‡ˇ ËÒÔÓÎ¸ÁÛÂÚÒˇ ‰Ó ÚÓ„Ó, Í‡Í ÂÈ ·˚ÎÓ Ì‡ÁÌ‡˜ÂÌÓ ÁÌ‡˜ÂÌËÂ
+#Enable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
     End Sub
 
     Private Sub DarkThemeCb_Checked(sender As Object, e As RoutedEventArgs)
@@ -562,6 +654,9 @@ Class MainWindow
         If languagesetgs = "ua" Then
             rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
         End If
+        If languagesetgs = "de" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+        End If
         dmitpctckey.SetValue("RefreshRate", Convert.ToString(Math.Round(rrateslider.Value)))
         timer1.Interval = TimeSpan.FromSeconds(Math.Round(rrateslider.Value))
     End Sub
@@ -579,7 +674,42 @@ Class MainWindow
         If languagesetgs = "ua" Then
             rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " c."
         End If
+        If languagesetgs = "de" Then
+            rratevaluelabel.Content = Convert.ToString(Math.Round(rrateslider.Value)) + " s."
+        End If
         dmitpctckey.SetValue("RefreshRate", Convert.ToString(Math.Round(rrateslider.Value)))
         timer1.Interval = TimeSpan.FromSeconds(Math.Round(rrateslider.Value))
+    End Sub
+
+    Private Sub mainform_MouseEnter(sender As Object, e As MouseEventArgs) Handles mainform.MouseEnter
+        NoLeakMem.Start()
+    End Sub
+
+    Private Sub mainform_MouseLeave(sender As Object, e As MouseEventArgs) Handles mainform.MouseLeave
+
+    End Sub
+
+    Private Sub okbtn_Click(sender As Object, e As RoutedEventArgs) Handles okbtn.Click
+        warninggrid.Visibility = Visibility.Hidden
+        NoShowWarn = 1
+    End Sub
+
+    Private Sub mainform_Deactivated(sender As Object, e As EventArgs) Handles mainform.Deactivated
+        NoLeakMem.Stop()
+        If NoShowWarn = 0 Then
+            warninggrid.Visibility = Visibility.Visible
+        End If
+    End Sub
+
+    Private Sub stats_item3_Selected(sender As Object, e As RoutedEventArgs) Handles stats_item3.Selected
+        frame1.Visibility = Visibility.Visible
+        StatsDialog.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub about_item3_Selected(sender As Object, e As RoutedEventArgs) Handles about_item3.Selected
+        Dim aboutprgfrm As New aboutprogram
+#Disable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
+        aboutprgfrm.Show()
+#Enable Warning BC42104 ' –ü–µ—Ä–µ–º–µ–Ω–Ω–∞—è –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –¥–æ —Ç–æ–≥–æ, –∫–∞–∫ –µ–π –±—ã–ª–æ –Ω–∞–∑–Ω–∞—á–µ–Ω–æ –∑–Ω–∞—á–µ–Ω–∏–µ
     End Sub
 End Class
