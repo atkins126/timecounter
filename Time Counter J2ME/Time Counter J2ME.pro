@@ -1,0 +1,5 @@
+-libraryjars C:\WTK2.5.2_01\lib\midpapi10.jar;C:\WTK2.5.2_01\lib\cldcapi10.jar;C:\WTK2.5.2_01\lib\cldcapi10.jar
+-injars C:\Users\ִלטענטי\j2mewtk\2.5.2\apps\Time Counter J2ME\bin\Time Counter J2ME.jar
+-outjar C:\Users\AACE~1\AppData\Local\Temp\Time Counter J2ME.jar
+-keep public class * extends javax.microedition.midlet.MIDlet 
+-dontusemixedcaseclassnames

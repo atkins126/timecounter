@@ -1,0 +1,8 @@
+MIDlet-1: Time Counter J2ME, Time Counter J2ME.png, MainformMIDlet
+MIDlet-Jar-Size: 13189
+MIDlet-Jar-URL: Time Counter J2ME.jar
+MIDlet-Name: Time Counter J2ME
+MIDlet-Vendor: Unknown
+MIDlet-Version: 1.0
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0
